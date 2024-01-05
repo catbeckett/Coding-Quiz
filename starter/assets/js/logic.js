@@ -1,4 +1,12 @@
-// global variables
+// GLOBAL VARIABLES ------------------------------------------------------------------------------------------------------*
+
+let countdown = 10;
+let intervalID;
+let userScore = 0;
+let questionID = 0;
+
+
+// TARGETED VARIABLES ----------------------------------------------------------------------------------------------------*
 
 let startButton = document.querySelector("#start");
 startButton.addEventListener("click", init);
@@ -6,41 +14,41 @@ startButton.addEventListener("click", init);
 let startScreen = document.querySelector("#start-screen");
 let questionScreen = document.querySelector("#questions");
 let endScreen = document.querySelector("#end-screen");
-
+let feedback = document.querySelector("#feedback");
 let timer = document.querySelector("#time");
-let countdown = 10;
-let intervalID;
-let choiceBox = document.querySelector('#choices');
-let userScore = 0;
-let questionID = 0;
+let choiceBox = document.querySelector("#choices");
+let finalScore = document.querySelector("#final-score");
+let scoresList = document.querySelector("#highscores");
+
+let submitButton = document.querySelector('#submit');
+submitButton.addEventListener("click", submitScore);
 
 
-// function list
+// FUNCTION LIST --------------------------------------------------------------------------------------------------------*
 
-
-// start button to initiate timer + first question appear
+// Start button to initiate timer + first question appear
 
 function init() {
-
     // start screen to hide
-    startScreen.classList.toggle("start")
-    startScreen.classList.toggle("hide")
+    startScreen.classList.toggle("start");
+    startScreen.classList.toggle("hide");
 
     // question title to appear  
-    questionScreen.classList.toggle("hide")
-    questionScreen.classList.toggle("start")
+    questionScreen.classList.toggle("hide");
+    questionScreen.classList.toggle("start");
 
     // start time
     startTimer();
     timeRemaining();
     showQuestion();
+};
 
-}
+
+// Timer to countdown whilst user is playing and will end when user completes quiz or time reaches 0
 
 function startTimer() {
     intervalID = setInterval(timeRemaining, 1000);
-}
-
+};
 
 function timeRemaining() {
     if (countdown > 0) {
@@ -49,20 +57,40 @@ function timeRemaining() {
     } else {
         clearInterval(intervalID);
     }
-}
+
+    // BUG TO BE FIXED - countdown will freeze if an incorrect answer is selected with 4 or less seconds remaining
+
+    if (countdown == 0) {
+        // localStorage.setItem("userScore", countdown);
+        showEndScreen();
+        clearInterval(intervalID);
+    }
+};
+
+function stopCountdown() {
+    // localStorage.setItem("userScore", countdown);
+    userScore = countdown;
+    console.log(userScore);
+    if (questionID === questionList.length - 1) {
+        clearInterval(intervalID);
+    }
+};
+
+
+// Displaying each question with a range of multiple choice answers
 
 function showQuestion() {
 
-    // Display questions
+    // display questions
 
     let question = questionList[questionID];
     document.querySelector("#question-title").textContent = question.title;
 
-    // Clear choice box
+    // clear choice box
 
     choiceBox.textContent = " ";
 
-    // Display choices for each question
+    // display choices for each question
 
     for (i = 0; i < question.choices.length; i++) {
         let choiceButton = document.createElement("button");
@@ -74,18 +102,10 @@ function showQuestion() {
 
         choiceButton.addEventListener("click", checkAnswer);
     }
-}
-
-function nextQuestion() {
-    if (questionID < questionList.length - 1) {
-        questionID++;
-        showQuestion();
-    } else {
-        document.querySelector("#question-title").textContent = "You have completed the quiz";
-        choiceBox.textContent = " ";
-        console.log("You have completetd the quiz");
-    }
 };
+
+
+// Checking whether users selected answer is correct to proceed with next question
 
 function checkAnswer(event) {
     let button = event.target;
@@ -96,49 +116,64 @@ function checkAnswer(event) {
     console.log(correctID);
 
     if (choiceID === correctID) {
-        console.log("That is correct!")
-        // add point to score
-        userScore += 1;
-        // show next question
-
+        console.log("That is correct!");
+        nextQuestion();
     } else {
-        console.log("That is incorrect.")
-        // deduct time from time remaining
+        console.log("That is incorrect.");
         countdown -= 4;
-        // show next question
-    };
+    }
+}
+    // ****** Check TimeRemaining function for bug with time being removed ******
+    
 
-    nextQuestion();
+function showCorrect() {
+    feedback.classList.toggle("hide");
+    feedback.textContent = "Correct!";
+    // ****** This should show on the screen for 1-2 seconds. ******
+}
+
+function showWrong() {
+    feedback.classList.toggle("hide");
+    feedback.textContent = "Wrong!";
+    // ****** This should show on the screen for 1-2 seconds. ******
+}
+
+function nextQuestion() {
+    if (questionID < questionList.length - 1) {
+        questionID++;
+        showQuestion();
+    } else {
+        stopCountdown();
+        showEndScreen();
+    }
 };
 
 
-// choice button clicks to verify choice and show next question
+// Show user score and enable user to enter initials to save score
 
+function showEndScreen() {
 
-    // listen for when choice is clicked
+    // question title to hide  
+    questionScreen.classList.toggle("hide");
+    questionScreen.classList.toggle("start");
 
-    // if correct choice clicked will add to score
+    // start screen to show
+    endScreen.classList.toggle("start");
+    endScreen.classList.toggle("hide");
 
-    // if incorrect will reduce timer by X
+    // let userScore = parseInt(localStorage.getItem("userScore"));
+    finalScore.innerHTML = `${userScore}`;
 
-    // will show user next question
+};
 
+// Saved initials and scores saved in local storage -> score.js file for score page logic
 
+function submitScore() {
+    let userName = document.querySelector("#initials").value;
+    localStorage.setItem(userName, userScore);
+    window.location.href = "highscores.html";
 
-
-
-    // if incorrect answer subtract time
-
-
-
-
-// quiz end at question.length end or timer === 0
-
-
-
-
-// quiz end displays score and allows user to enter intials
-
-
-
-// saved initials and scores saved in local storage -> score.js file for score page logic
+    let newScore = document.createElement("li");
+    newScore.textContent = (`${userName} ${userScore}`);
+    document.querySelector("#highscores").appendChild(newScore);
+};
