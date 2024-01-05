@@ -1,5 +1,5 @@
   // variable for questions array
-  
+
 let questionList = [
   {
       title: 'What does HTML stand for?',
@@ -8,21 +8,21 @@ let questionList = [
   },
   {
       title: 'How can we style a website?',
-      choices: ['wrting in a README.md file', 'by adding Javascript in a script', 'by adding CSS in a style sheet', 'None of these'],
-      correctAnswer: 2,
+      choices: ['by adding CSS in a style sheet', 'writing in a README.md file', 'by adding Javascript in a script', 'None of these'],
+      correctAnswer: 0,
   },
   {
       title: 'What words can we use to declare variables?',
-      choices: ['constant', 'let and variable', 'let and const', 'var'],
-      correctAnswer: 2,
+      choices: ['let and const', 'constant', 'let and variable', 'var'],
+      correctAnswer: 0,
   },
   {
-      title: 'Stored values are coalled strings. What do we store strings in?',
-      choices: ['brakets', 'double quotes', 'curly braces', 'single quotes'],
-      correctAnswer: 1,
+      title: 'Stored values are called strings. What do we store strings in?',
+      choices: ['double quotes', 'brakets', 'curly braces', 'single quotes'],
+      correctAnswer: 0,
   },
   {
-      title: 'What does const stand for?',
+      title: 'What does "const" stand for?',
       choices: ['constant', 'continous', 'Constantinople', 'constable'],
       correctAnswer: 0,
   },

@@ -57,9 +57,7 @@ function timeRemaining() {
     } else {
         clearInterval(intervalID);
     }
-
-    // BUG TO BE FIXED - countdown will freeze if an incorrect answer is selected with 4 or less seconds remaining
-
+    
     if (countdown == 0) {
         // localStorage.setItem("userScore", countdown);
         showEndScreen();
@@ -104,9 +102,6 @@ function showQuestion() {
     }
 };
 
-
-// Checking whether users selected answer is correct to proceed with next question
-
 function checkAnswer(event) {
     let button = event.target;
     let choiceID = button.getAttribute("choiceID");
@@ -117,25 +112,29 @@ function checkAnswer(event) {
 
     if (choiceID === correctID) {
         console.log("That is correct!");
+        showCorrect();
         nextQuestion();
     } else {
         console.log("That is incorrect.");
         countdown -= 4;
+        showWrong();
     }
-}
-    // ****** Check TimeRemaining function for bug with time being removed ******
-    
+}   
 
 function showCorrect() {
-    feedback.classList.toggle("hide");
+    feedback.classList.remove("hide");
     feedback.textContent = "Correct!";
-    // ****** This should show on the screen for 1-2 seconds. ******
+    setTimeout(function() {
+        feedback.classList.add("hide");
+    }, 1000);
 }
 
 function showWrong() {
-    feedback.classList.toggle("hide");
+    feedback.classList.remove("hide");
     feedback.textContent = "Wrong!";
-    // ****** This should show on the screen for 1-2 seconds. ******
+    setTimeout(function() {
+        feedback.classList.add("hide");
+    }, 1000);
 }
 
 function nextQuestion() {
@@ -146,9 +145,7 @@ function nextQuestion() {
         stopCountdown();
         showEndScreen();
     }
-};
-
-
+}
 // Show user score and enable user to enter initials to save score
 
 function showEndScreen() {
@@ -166,7 +163,7 @@ function showEndScreen() {
 
 };
 
-// Saved initials and scores saved in local storage -> score.js file for score page logic
+// initials and scores saved in local storage -> score.js file for score page logic
 
 function submitScore() {
     let userName = document.querySelector("#initials").value;
