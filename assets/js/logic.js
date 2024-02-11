@@ -56,14 +56,15 @@ function timeRemaining() {
         timer.textContent = countdown;
     } else {
         clearInterval(intervalID);
+        showEndScreen(); // Show end screen when time reaches 0
     }
-    
-    if (countdown == 0) {
-        // localStorage.setItem("userScore", countdown);
-        showEndScreen();
+
+    if (questionID === questionList.length - 1) {
         clearInterval(intervalID);
+        stopCountdown(); // Stop countdown when all questions are answered
     }
-};
+}
+
 
 function stopCountdown() {
     // localStorage.setItem("userScore", countdown);
@@ -166,11 +167,19 @@ function showEndScreen() {
 // initials and scores saved in local storage -> score.js file for score page logic
 
 function submitScore() {
+    console.log("Submit button clicked"); // Check if the function is triggered
     let userName = document.querySelector("#initials").value;
-    localStorage.setItem(userName, userScore);
+    localStorage.setItem(userName, userScore); // Store initials and score
+    // Redirect to highscores page
     window.location.href = "highscores.html";
 
+    // Display the new score immediately
     let newScore = document.createElement("li");
-    newScore.textContent = (`${userName} ${userScore}`);
-    document.querySelector("#highscores").appendChild(newScore);
-};
+    newScore.textContent = `${userName} ${userScore}`;
+    scoresList.appendChild(newScore); // Append the new score to the highscores list
+
+    // Redirect to highscores page after a delay (e.g., 1 second)
+    setTimeout(() => {
+        window.location.href = "highscores.html"; // Redirect to highscores page
+    }, 1000); // Delay in milliseconds
+}
