@@ -1,39 +1,39 @@
 body {
   font-family: 'calibri', sans-serif;
-  font-size: 16px; /* Adjust as needed */
-  background-color: #f8f8f8; /* Set a light background color */
+  font-size: 16px;
+  background-color: #f8f8f8; /* Light gray background */
 }
 
 a {
-  color:  #ee3caf; /* Blue color for links */
+  color: #6c5ce7; /* Purple color for links */
   text-decoration: none;
   transition: color 0.3s;
 }
 
 a:hover {
-  color: #461a75; /* Darker blue on hover */
+  color: #44337a; /* Darker purple on hover */
 }
 
 button {
   display: inline-block;
-  margin: 8px; /* Increased margin for buttons */
+  margin: 8px;
   cursor: pointer;
-  font-size: 110%; /* Adjust as needed */
-  background-color: #461a75; /* Green color for buttons */
+  font-size: 110%;
+  background-color: #6c5ce7; /* Purple color for buttons */
   border-radius: 8px;
-  padding: 10px 15px; /* Added padding for buttons */
+  padding: 10px 15px;
   color: white;
   border: 0;
   transition: background-color 0.3s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
-  background-color: #ee3caf; /* Darker green on hover */
+  background-color: #ff66b3; /* Neutral pink color on hover */
 }
 
 ol {
-  padding-left: 20px; /* Added padding for better list readability */
+  padding-left: 20px;
   max-height: 400px;
   overflow: auto;
 }
@@ -41,7 +41,7 @@ ol {
 li {
   padding: 10px;
   list-style: decimal inside none;
-  margin-bottom: 5px; /* Increased spacing between list items */
+  margin-bottom: 5px;
 }
 
 .feedback {
@@ -49,9 +49,9 @@ li {
   font-size: 120%;
   margin-top: 20px;
   padding: 10px;
-  color: #555;
-  background-color: #f9f9f9; /* Light gray background for feedback */
-  border: 1px solid #ddd;
+  color: #333; /* Dark gray for feedback text */
+  background-color: #f5f5f5; /* Light gray background for feedback */
+  border: 1px solid #ddd; /* Light gray border */
   border-radius: 5px;
 }
 
@@ -63,9 +63,8 @@ li {
 
 .wrapper {
   margin: 50px auto 0 auto;
-  max-width: 800px; /* Increased max-width for better centering */
+  max-width: 800px;
 }
-
 
 .hide {
   display: none;
@@ -97,26 +96,26 @@ li {
 }
 
 #questions {
-  text-align: center; /* Align the questions in the center */
+  text-align: center;
 }
 
 #choices {
-  text-align: left; /* Align the multiple-choice buttons to the left */
+  text-align: left;
 }
 
 .choices button {
   display: block;
-  margin: 10px auto; /* Auto margin to center the buttons horizontally */
-  width: 80%; /* Set a specific width for the buttons */
-  max-width: 300px; /* Optionally, set a maximum width to ensure they don't become too wide */
-  padding: 10px; /* Add padding for better button appearance */
-  border: 1px solid #ddd; /* Add a subtle border for separation */
-  border-radius: 5px; /* Add border-radius for rounded corners */
-  background-color: #461a75; /* Set background color for buttons */
+  margin: 10px auto;
+  width: 80%;
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #6c5ce7; /* Purple color for buttons */
   color: white;
-  transition: background-color 0.3s; /* Smooth transition on hover */
+  transition: background-color 0.3s;
 }
 
 .choices button:hover {
-  background-color: #ee3caf; /* Light gray background on hover */
+  background-color: #ff66b3; /* Neutral pink color on hover */
 }
