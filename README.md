@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Coding-Quiz Application is a web-based quiz platform designed to test users' knowledge on various topics. It presents multiple-choice questions to users and evaluates their answers in real-time. Users can see their final score upon completion of the quiz and have the option to save their scores with their initials for future reference. This app runs in the browser, and features updated HTML and CSS powered by JavaScript code which deploys a clean, polished, and responsive user interface.
+The Coding-Quiz Application is a web-based quiz platform designed to test users' knowledge on various topics. It presents multiple-choice questions to users and evaluates their answers in real-time. Users can see their final score upon completion of the quiz and have the option to save their scores with their initials for future reference. This app runs in the browser, and features updated HTML and CSS powered by JavaScript code which deploys a clean, polished, and responsive user interface. Please see the deployed app here: https://catbeckett.github.io/Coding-Quiz/
 
 ## Features
 
@@ -36,3 +36,7 @@ Functions to initialize the quiz, start the timer, track time remaining, display
 The Coding-Quiz app is open-source and available under the MIT License.
 
 ## Screenshot
+![Screenshot 1](assets/Screenshot-CDQ-1.png)
+![Screenshot 2](assets/Screenshot-CDQ-2.png)
+![Screenshot 3](assets/Screenshot-CDQ-3.png)
+![Screenshot 4](assets/Screenshot-CDQ-4.png)
